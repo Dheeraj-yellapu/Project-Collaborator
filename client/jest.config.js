@@ -1,5 +1,7 @@
-// // filepath: /home/yellapu/project/client/jest.config.js
 module.exports = {
-    testEnvironment: 'jest-environment-jsdom',
-    setupFilesAfterEnv: ['@testing-library/jest-dom'],
-};
+    roots: ['<rootDir>/src'], // Look for tests in src/
+    testMatch: ['**/?(*.)+(test).js?(x)'], // Match .js and .jsx test files
+    moduleDirectories: ['node_modules', '<rootDir>/src'], // Resolve imports from src/
+    moduleFileExtensions: ['js', 'jsx', 'json', 'node'], // Recognize .jsx files
+    setupFilesAfterEnv: ['<rootDir>/setupTests.js'], // Load jest-dom
+  };

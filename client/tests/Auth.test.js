@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import {Auth} from '../src/components/Auth'; // Adjust the import path based on your file structure
+import { Auth } from '../src/components/Auth'; // Adjusted import path for project/client/src/components/codes/Auth.js
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 

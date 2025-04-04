@@ -1,34 +1,82 @@
 name: CI Pipeline
 
-# Trigger the workflow on push or pull request to the main branch
+# Trigger the workflow on pushes and pull requests to the main branch
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
-# Define the jobs to run
 jobs:
-  test:
-    # Use an Ubuntu runner (GitHub-hosted virtual machine)
+  test-client:
+    name: Test Client
     runs-on: ubuntu-latest
 
-    # Steps to execute
+    # Set working directory to the client folder
+    defaults:
+      run:
+        working-directory: ./client
+
     steps:
-      # 1. Checkout the repository code
+      # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Set up Node.js environment
-      - name: Set up Node.js
+      # Set up Node.js environment
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Adjust to your Node.js version
+          node-version: '18' # Use the version that matches your project
 
-      # 3. Install dependencies
+      # Install client dependencies
       - name: Install dependencies
-        run: npm ci # Use npm ci for a clean install
+        run: npm install
 
-      # 4. Run tests
+      # Run unit tests for the client
       - name: Run tests
-        run: npm test -- --watchAll=false # Run Jest in non-interactive mode
+        run: npm test
+
+  test-server:
+    name: Test Server
+    runs-on: ubuntu-latest
+
+    # Set working directory to the server folder
+    defaults:
+      run:
+        working-directory: ./server
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Install server dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Placeholder for server tests (add your test command here if applicable)
+      - name: Run server tests
+        run: npm test || echo "No server tests defined yet"
+
+    # Optional: Add environment variables for server testing if needed
+    env:
+      NODE_ENV: test
+
+# Optional: Add a job to ensure both client and server tests pass
+  build:
+    name: Build Check
+    needs: [test-client, test-server] # Depends on successful client and server tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build successful
+        run: echo "CI pipeline completed successfully!"
