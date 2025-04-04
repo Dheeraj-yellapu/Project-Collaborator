@@ -33,10 +33,12 @@ jobs:
       # Install client dependencies
       - name: Install dependencies
         run: npm install
+        continue-on-error: true
 
       # Run unit tests for the client
       - name: Run tests
         run: npm test
+        
 
   test-server:
     name: Test Server
