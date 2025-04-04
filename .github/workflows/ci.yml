@@ -37,7 +37,6 @@ jobs:
       # Run unit tests for the client
       - name: Run tests
         run: npm test
-        continue-on-error: true
 
   test-server:
     name: Test Server
