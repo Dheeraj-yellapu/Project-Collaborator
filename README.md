@@ -56,8 +56,20 @@ structured project rooms.
 ### User Customization
 
 - **Profile Editor**: Personalize user profiles with custom details (*in development*).
-## Demo
 
+
+## Tech Stack
+
+**Client:** React, CSS (Bem-Methodology), Stream Platform (for handling chats)
+
+**Server:** Node, Express
+
+**Test:** Jest, Mocha
+
+
+
+## Demo
+https://drive.google.com/file/d/1G3pjeZrlqz7UmRyM4Mm4jO9kmhANF8rP/view?usp=sharing
 
 
 ## Run Locally
@@ -65,14 +77,10 @@ structured project rooms.
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/Dheeraj-yellapu/Project-Collaborator
 ```
 
 Go to the project directory
-
-```bash
-  cd my-project
-```
 
 Install dependencies
 
@@ -83,9 +91,13 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm start
 ```
 
+Go to client directory and start client
+```bash
+  npm run dev
+```
 
 ## Running Tests
 
@@ -95,39 +107,18 @@ To run tests, run the following command
   npm run test
 ```
 
+Automatic testing integrating in Github using CI pipleline
+
 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_KEY`
+`STREAM_APP_ID`
+`STREAM_API_KEY`
+`STREAM_API_SECRET`
 
-`ANOTHER_API_KEY`
-
-
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
+`TWILIO_ACCOUNT_SID`
+`TWILIO_AUTH_TOKEN`
+`TWILIO_MESSAGING_SERVICE_SID`
 
